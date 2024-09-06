@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Recommendation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
+
+    <style>
+        label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        select {
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            appearance: none;
+           
+            -webkit-appearance: none;
+            
+            -moz-appearance: none;
+            
+            width: 200px;         
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            border-color: #007BFF;
+            /* Change border color on focus */
+            outline: none;
+            /* Remove default outline */
+        }
+
+        /* Custom arrow for the select element */
+        select::after {
+            content: '▼';
+            /* Down arrow */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            /* Ensure arrow does not interfere with click events */
+        }
+
+        .select-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            /* Space between heading and videos */
+        }
+
+        #videoRecommendation {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 columns */
+            gap: 20px;
+            /* Space between video containers */
+        }
+
+        .video-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            /* Adjust height as needed */
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            iframe {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            iframe {
+                height: 200px;
+            }
+        }
+
+        .video-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #e0f2f1;
+            /* Light green background color */
+            padding: 10px;
+            /* Optional: adds padding inside the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* Adjust shadow as needed */
+            border-radius: 5px;
+            /* Optional: adds rounded corners */
+        }
+        .navbar {
+    background-color: #4CAF50; /* Green background color */
+}
+
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">                
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index1.html">
+                <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Logo">
+                <span class="navbar-brand-text">
+                    Plant Patrol
+                    <small>Cultivate. Predict. Thrive</small>
+                </span>
+            </a>
+    
+            <div class="d-lg-none ms-auto me-3">
+                <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Member Login</a>
+            </div>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="index1.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarPagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarPagesDropdown">
+                            <li><a class="dropdown-item" href="#disease_prediction">Disease Prediction</a></li>
+                            <li><a class="dropdown-item" href="#water_prediction">Water Prediction</a></li>
+                            <li><a class="dropdown-item" href="videorecommend.html">Video Recommendation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#contact_us">Contact Us</a>
+                    </li>
+                </ul>
+    
+                <div class="d-none d-lg-block ms-lg-3">
+                    <a class="btn custom-btn custom-border-btn" data-bs-toggle="offcanvas" href="login.html" role="button" aria-controls="offcanvasExample">Member Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <label for="videoOptions">Choose a video category:</label>
+    <select id="videoOptions" name="videoOptions" onchange="recommendVideo()">
+        <option value="none">Select an option</option>
+        <option value="option1">Apple</option>
+        <option value="option2">Bananas</option>
+        <option value="option3">Oranges</option>
+        <option value="option4">Carrots</option>
+        <option value="option5">Tomatoes</option>
+        <option value="option6">Broccoli</option>
+        <option value="option7">Wheat</option>
+        <option value="option8">Rice</option>
+        <option value="option9">Corn</option>
+        <option value="option10">Beans</option>
+        <option value="option11">Peas</option>
+        <option value="option12">Lentils</option>
+        <option value="option13">Basil</option>
+        <option value="option14">Mint</option>
+        <option value="option15">Thyme</option>
+        <option value="option16">Paddy</option>
+        <option value="option17">Maize</option>
+        <option value="option18">Cotton</option>
+        <option value="option19">Coconut</option>
+        <option value="option20">Soybean</option>
+        <option value="option21">Tea</option>
+        <option value="option22">Carrots</option>
+        <option value="option23">Beets</option>
+        <option value="option24">Turnips</option>
+        <option value="option25">Radishes</option>
+        <option value="option26">Cabbage</option>
+        <option value="option27">Melons</option>
+        <option value="option28">Turmeric</option>
+        <option value="option29">Basil</option>
+        <option value="option30">Mint</option>
+        <option value="option31">Sugarcane</option>
+        <option value="option32">Tobacco</option>
+        <option value="option33">Coffee</option>
+        <option value="option34">Peanuts</option>
+        <option value="option35">Green Beans</option>
+        <option value="option36">Kidney Beans</option>
+        <option value="option37">Barley</option>
+        <option value="option38">Potatoes</option>
+        <option value="option39">Ginger</option>
+        <option value="option40">Spinach</option>
+
+    </select>
+
+    <div id="videoRecommendation" style="margin-top: 20px;">
+        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/wwpeTT2yPbk?si=7Cw44oRNhykqh4rr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/D4rnBTOt4lM?si=IaW3zVt03EbHe5s_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/epaXkdnjO8I?si=ww2noV7Hibk6GKAJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/5P_4NgFBs9w?si=v95d8z8KnYyiVyBe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>;
+
+        <!-- Recommended videos will be displayed here -->
+    </div>
+
+    <script>
+        function recommendVideo() {
+            const videoOptions = document.getElementById('videoOptions').value;
+            const videoRecommendation = document.getElementById('videoRecommendation');
+
+            switch (videoOptions) {
+                case 'option1':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/wwpeTT2yPbk?si=7Cw44oRNhykqh4rr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/D4rnBTOt4lM?si=IaW3zVt03EbHe5s_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/epaXkdnjO8I?si=ww2noV7Hibk6GKAJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/5P_4NgFBs9w?si=v95d8z8KnYyiVyBe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option2':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/mgvztGVhN-E?si=Hqb6LpsWeP6Bi2yY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/xiwaZkoYx1Q?si=k1r8LoVCX7AnJH30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/Bf9tV4fgSfc?si=aQgNFUz9U5XYzt2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/P2C9vtAEnkA?si=gDxMHBS66_j-S-VW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option3':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/evmhYMUDeHY?si=obi8eIBNhP3DS6jF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/g-vsUaZbEjs?si=0rfPwoMFyw7Y97r2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/YPTitWLLsO0?si=UXuBSmDf04zQ4fXF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/pmhVPchSmvE?si=wTCyzFMKfHBBIY1a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option4':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/mcW9bQd8YuY?si=B0BzPIUsFTS9oqI_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/EYi2gLiA4hk?si=AG62OAmQb8kAaDJ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/0njymxprpAY?si=wtWM-c4qAloGBOr_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/T-zqzKSa_xg?si=ocLpBGFI3kZOLYQ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option5':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/5Fq6PQl7fr8?si=AqlcpKr8AHLkFYsp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/3JigXb9KXqI?si=Rug01wWEJtRKWtUr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/Hg-4Sr38t08?si=sjsOqYQRjVGb6-X_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/TGmYy7P80V8?si=iwMw5M5jwvMJm6cm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option6':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/HBkkxCAw8fk?si=K5mLn2v5ATBS-hk7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/ghrQnGBF0zE?si=si4bUnYXqjFTP51k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/U1K_V5CL6vY?si=I_-aCH6a-m8TqX5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/o0OotEaDONU?si=9NR-X2O9n0wyE-4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option7':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/cF_gryKF8RA?si=OKsjXXGIOZDvsJiB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/TBwZV1lRWXU?si=ldWaJ1WWLYKJpVeG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/JiH11UcCqy8?si=dFP33hJQ9XRdaTMa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/T-zqzKSa_xg?si=ocLpBGFI3kZOLYQ8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option8':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/7w0XuoqvCFg?si=FPMFVZu_NIjBtb80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/OuInpXWh4AM?si=dyYupqBHbHMgc3Jv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/qHIKRwYe3Cs?si=zAv_EPspUbxvJb-S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/32s_qirzcok?si=VKtHRPkYDET8s8xH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option9':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/nfMLKP1nXK0?si=_CJYr1GEtyp3NPOM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/BIOew7BVF9k?si=CrnJsYk1yZ7VTgdN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/8l_k_qy722U?si=6CT1H3ezrrl50vYQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/gB5ICfqDMuA?si=LiY3jQVf-M3z6mYL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option10':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/QjSSOQ7lMl0?si=Wj0Mp10di7nYf1h4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/BgWUKm27w_8?si=KjrKpU3CfVvCVADg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/6hpVm0CRMFw?si=5NMnS2NtDkKKwIOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/l3NS09izxYE?si=xhDXfl7HpvxlzHCQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option11':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/0V2F-XW18Gc?si=prFs8dKn6kE7OKus" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/4JFqio9hVcI?si=F06tedmebtRdMz3a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/Q7v1QLKg-lo?si=u7wRfEKUn1NNEnOK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/qnhqkhEVZuI?si=WPjf4CkTh9WPu13j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option12':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/lkNcdtNWy9M?si=_wOmTa_oMskIC-lx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/ak3242mPQx8?si=k4bVobet-gXG8YGk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/2I_RLnlKZyk?si=KDIFLdtURJYpOrUy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                `;
+                    break;
+                case 'option13':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/DvDHmpVYN5o?si=PTzamEjugW0qC32D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/uhYnR1ciT7M?si=PsI1BMy1nRDHsX8E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/FRaGaPIAKII?si=vZIAbiPSEAwocrCj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/BunUetZ-MFM?si=rxc0vWYLpV7O24js" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>`;
+                    break;
+                case 'option14':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/JRAJ3l2Mm4k?si=VqREcScEBR9whYx6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/GHeiQJrdSCQ?si=PjKTQyOPmifXhjOg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/qzQLvM6hQvU?si=oZzbPVF3kriD95H8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/Na460IwdGe4?si=TTMOFckDRBwuI4ve" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
+                    break;
+                case 'option15':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/LoqxCNQiglw?si=Puok7YW8OoeH6bxw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="video-container"></div>                    
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+                case 'option':
+                    videoRecommendation.innerHTML = `
+                        <h3>Recommended Videos:</h3>
+                        <br>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>
+                        <div class="video-container"></div>`;
+                    break;
+
+                default:
+                    videoRecommendation.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

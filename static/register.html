@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>Registration</header>
+        <form action="http://127.0.0.1:8000/register" method="post">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" placeholder="Enter your First Name"
+                                required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" placeholder="Enter your Last Name"
+                                required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="" disabled selected>Select your gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="mobile_number">Mobile Number</label>
+                            <input type="text" id="mobile_number" name="mobile_number"
+                                placeholder="Enter your Mobile Number" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="state">State</label>
+                            <select id="state" name="state" required>
+                                <option value="" disabled selected>Select your state</option>
+                                <option value="andhra-pradesh">Andhra Pradesh</option>
+                                <option value="arunachal-pradesh">Arunachal Pradesh</option>
+                                <option value="assam">Assam</option>
+                                <option value="bihar">Bihar</option>
+                                <option value="chhattisgarh">Chhattisgarh</option>
+                                <option value="goa">Goa</option>
+                                <option value="gujarat">Gujarat</option>
+                                <option value="haryana">Haryana</option>
+                                <option value="himachal-pradesh">Himachal Pradesh</option>
+                                <option value="jharkhand">Jharkhand</option>
+                                <option value="karnataka">Karnataka</option>
+                                <option value="kerala">Kerala</option>
+                                <option value="madhya-pradesh">Madhya Pradesh</option>
+                                <option value="maharashtra">Maharashtra</option>
+                                <option value="manipur">Manipur</option>
+                                <option value="meghalaya">Meghalaya</option>
+                                <option value="mizoram">Mizoram</option>
+                                <option value="nagaland">Nagaland</option>
+                                <option value="odisha">Odisha</option>
+                                <option value="punjab">Punjab</option>
+                                <option value="rajasthan">Rajasthan</option>
+                                <option value="sikkim">Sikkim</option>
+                                <option value="tamil-nadu">Tamil Nadu</option>
+                                <option value="telangana">Telangana</option>
+                                <option value="tripura">Tripura</option>
+                                <option value="uttar-pradesh">Uttar Pradesh</option>
+                                <option value="uttarakhand">Uttarakhand</option>
+                                <option value="west-bengal">West Bengal</option>
+                                <option value="andaman-and-nicobar-islands">Andaman and Nicobar Islands</option>
+                                <option value="chandigarh">Chandigarh</option>
+                                <option value="dadra-and-nagar-haveli-and-daman-and-diu">Dadra and Nagar Haveli and
+                                    Daman and Diu</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="lakshadweep">Lakshadweep</option>
+                                <option value="ladakh">Ladakh</option>
+                                <option value="puducherry">Puducherry</option>
+                                <option value=" Jammu-and-Kashmir">Jammu and Kashmir</option>
+                            </select>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="district">District</label>
+                            <select id="district" name="district" required>
+                                <option value="" disabled selected>Select your district</option>
+                                <option value=" Jammu-and-Kashmir">Jammu and Kashmir</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="taluk">Taluk</label>
+                            <input type="text" id="taluk" name="taluk" placeholder="Enter your Taluk" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="village">Village</label>
+                            <input type="text" id="village" name="village" placeholder="Enter your Village" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="pin_code">Pin Code</label>
+                            <input type="text" id="pin_code" name="pin_code" placeholder="Enter your Pin Code" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="email">Email Id</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="password">Create Password</label>
+                            <input type="password" id="password" name="password" placeholder="Create your Password"
+                                required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #4a9945;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left; /* Align text to the left */
+}
+
+form {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold; /* Make labels bold */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #4a9945; /* Highlight input border on focus */
+    outline: none; /* Remove default outline */
+}
+
+button {
+    background: #4a9945;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #2c3e50;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #4a9945;
+    color: #ffffff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+p {
+    margin-top: 0;
+    text-align: center;
+}
+
+</style>
+    
+</head>
+
+<body>
+    <header>
+        <h1>Login</h1>
+        
+    </header>
+    <main>
+        <div class="form-container">
+            <form id="loginForm">
+                <label for="username">E-Mail:</label>
+                <input type="text" id="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
+ 
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Plant Patrol</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
